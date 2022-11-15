@@ -18,6 +18,4 @@ jobs:
           service_account: 'test-user-1@focused-sprite-368710.iam.gserviceaccount.com'
     - id: 'gcloud'
       name: 'gcloud'
-      run: |-
-        gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
-        gcloud services list
+      run: gcloud services list
