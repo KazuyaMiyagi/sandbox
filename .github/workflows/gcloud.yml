@@ -1,5 +1,6 @@
 name: List services in GCP
 on:
+  push:
   workflow_dispatch:
 
 
@@ -18,4 +19,4 @@ jobs:
           service_account: 'test-user-1@focused-sprite-368710.iam.gserviceaccount.com'
     - id: 'gcloud'
       name: 'gcloud'
-      run: gcloud services list
+      run: gcloud info
