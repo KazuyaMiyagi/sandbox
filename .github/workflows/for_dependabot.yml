@@ -7,5 +7,5 @@ on:
 
 jobs:
   run-secret-action:
-    - if: github.event.label.name == 'test'
-      uses: ./.github/workflows/secret.yml
+    if: github.event.label.name == 'test'
+    uses: ./.github/workflows/secret.yml
