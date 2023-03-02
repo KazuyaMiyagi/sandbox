@@ -9,3 +9,7 @@ jobs:
   run-secret-action:
     if: github.event.label.name == 'test'
     uses: ./.github/workflows/secret.yml
+  echo-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ secrets.SECRET_NAME }}"
