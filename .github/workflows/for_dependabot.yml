@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
       - if: github.event.label.name == 'test'
-        run: ./.github/workflows/secret.yml
+        uses: ./.github/workflows/secret.yml
