@@ -1,0 +1,13 @@
+name: GitHub Action sandbox - for dependabot action
+on:
+  pull_request_target:
+    types:
+      - labeled
+  workflow_dispatch:
+
+jobs:
+  run-secret-action:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event.label.name == 'dependencies' && github.event.label.name == 'test'
+        run: ./.github/workflows/secret.yml
