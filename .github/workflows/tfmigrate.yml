@@ -28,6 +28,8 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
+          # tfmigrate が terraform コマンドの実行結果のパースに失敗するので無効化する
+          terraform_wrapper: false
 
       - run: terraform --version
 
