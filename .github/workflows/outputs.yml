@@ -29,4 +29,4 @@ jobs:
       - env:
           OUTPUT1: ${{needs.job-1.outputs.output-1}}
           OUTPUT2: ${{needs.job-1.outputs.output-2}}
-        run: echo "$OUTPUT1 $OUTPUT2"
+        run: echo "$OUTPUT1 $OUTPUT2 ${{needs.job-1.outputs.output-1}}"
