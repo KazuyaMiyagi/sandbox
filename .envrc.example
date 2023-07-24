@@ -1,0 +1,10 @@
+# AWS
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
+unset AWS_SESSION_EXPIRATION
+export AWS_PROFILE=...
+
+# Terraform
+unset TF_WORKSPACE
+export TF_VAR_domain_name=...
