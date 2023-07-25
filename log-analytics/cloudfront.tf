@@ -6,6 +6,8 @@ module "cloudfront_main" {
 
   enabled = true
 
+  http_version = "http2and3"
+
   logging_config = {
     bucket          = module.s3_bucket_cloudfront_logs.s3_bucket_bucket_domain_name
     include_cookies = true
@@ -25,7 +27,7 @@ module "cloudfront_main" {
 
   default_cache_behavior = {
     target_origin_id       = "something"
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
 
     allowed_methods = ["GET", "HEAD", "OPTIONS"]
     cached_methods  = ["GET", "HEAD"]
