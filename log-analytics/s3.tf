@@ -31,7 +31,7 @@ module "s3_bucket_cloudfront_logs" {
     rule = {
       apply_server_side_encryption_by_default = {
         sse_algorithm     = "aws:kms"
-        kms_master_key_id = module.kms_main.key_arn
+        kms_master_key_id = module.aws_kms.key_arn
       }
     }
   }
