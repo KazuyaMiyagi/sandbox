@@ -7,7 +7,12 @@ data "aws_canonical_user_id" "current" {}
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/cloudfront_log_delivery_canonical_user_id
 data "aws_cloudfront_log_delivery_canonical_user_id" "cloudfront" {}
 
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project.html
+data "google_project" "current" {
+  project_id = var.gcp_project_id
+}
+
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/storage_transfer_project_service_account
 data "google_storage_transfer_project_service_account" "default" {
-  project = var.gcp_project_id
+  project = data.google_project.current.project_id
 }

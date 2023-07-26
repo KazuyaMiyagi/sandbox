@@ -3,11 +3,11 @@ module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
   version = "4.0.0"
 
-  project_id = var.gcp_project_id
+  project_id = data.google_project.current.project_id
   location   = "asia-northeast1"
 
   names = [
-    "${var.gcp_project_id}-sandbox",
+    "${data.google_project.current.number}-sandbox",
   ]
 }
 
@@ -18,7 +18,7 @@ resource "google_storage_bucket_iam_member" "storage_transfer_service" {
 }
 
 resource "google_storage_transfer_job" "cloudfront_log" {
-  project     = var.gcp_project_id
+  project     = data.google_project.current.project_id
   description = "CloudFront log transfer job"
 
   transfer_spec {
