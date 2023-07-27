@@ -25,6 +25,7 @@ resource "google_storage_transfer_job" "cloudfront_log" {
     aws_s3_data_source {
       bucket_name = module.s3_bucket_cloudfront_logs.s3_bucket_id
       role_arn    = aws_iam_role.storage_transfer_service.arn
+      path        = "partitioned/"
     }
     gcs_data_sink {
       bucket_name = module.cloud_storage.bucket.name

@@ -40,3 +40,20 @@ module "s3_bucket_cloudfront_logs" {
     enabled = true
   }
 }
+
+module "s3_bucket_notification_cloudfront_logs" {
+  source  = "terraform-aws-modules/s3-bucket/aws//modules/notification"
+  version = "3.14.1"
+
+  bucket = module.s3_bucket_cloudfront_logs.s3_bucket_id
+
+  lambda_notifications = {
+    cloudfront_accesslogs_partitioner = {
+      function_arn  = module.lambda_main.lambda_function_arn
+      function_name = module.lambda_main.lambda_function_name
+      events        = ["s3:ObjectCreated:Put"]
+      filter_prefix = "raw/"
+      filter_suffix = null
+    }
+  }
+}

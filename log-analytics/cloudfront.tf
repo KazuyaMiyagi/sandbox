@@ -10,6 +10,7 @@ module "cloudfront_main" {
 
   logging_config = {
     bucket          = module.s3_bucket_cloudfront_logs.s3_bucket_bucket_domain_name
+    prefix          = "raw/"
     include_cookies = true
   }
 
