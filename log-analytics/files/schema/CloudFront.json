@@ -2,7 +2,7 @@
   {
     "mode": "NULLABLE",
     "name": "date",
-    "type": "STRING"
+    "type": "DATE"
   },
   {
     "mode": "NULLABLE",
@@ -11,83 +11,83 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "x_edge_location",
+    "name": "location",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "sc_bytes",
+    "name": "bytes",
+    "type": "BIGNUMERIC"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "request_ip",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "method",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "host",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "uri",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "status",
     "type": "INTEGER"
   },
   {
     "mode": "NULLABLE",
-    "name": "c_ip",
+    "name": "referrer",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_method",
+    "name": "user_agent",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_host",
+    "name": "query_string",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_uri_stem",
+    "name": "cookie",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "sc_status",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "cs_referer",
+    "name": "result_type",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_user_agent",
+    "name": "request_id",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_uri_query",
+    "name": "host_header",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_cookie",
+    "name": "request_protocol",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "x_edge_result_type",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "x_edge_request_id",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "x_host_header",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "cs_protocol",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "cs_bytes",
-    "type": "INTEGER"
+    "name": "request_bytes",
+    "type": "BIGNUMERIC"
   },
   {
     "mode": "NULLABLE",
@@ -96,7 +96,7 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "x_forwarded_for",
+    "name": "xforwarded_for",
     "type": "STRING"
   },
   {
@@ -111,12 +111,12 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "x_edge_response_result_type",
+    "name": "response_result_type",
     "type": "STRING"
   },
   {
     "mode": "NULLABLE",
-    "name": "cs_protocol_version",
+    "name": "http_version",
     "type": "STRING"
   },
   {
