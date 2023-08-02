@@ -16,3 +16,10 @@ data "google_project" "current" {
 data "google_storage_transfer_project_service_account" "default" {
   project = data.google_project.current.project_id
 }
+
+# https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file
+data "archive_file" "move_access_logs" {
+  type        = "zip"
+  source_file = "files/lambda/moveAccessLogs.js"
+  output_path = "files/lambda/moveAccessLogs.zip"
+}

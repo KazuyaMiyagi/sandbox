@@ -7,6 +7,8 @@ locals {
   }
 }
 
+provider "archive" {}
+
 provider "aws" {
   region = "ap-northeast-1"
   alias  = "tokyo"
@@ -15,5 +17,4 @@ provider "aws" {
   }
 }
 
-provider "google" {
-}
+provider "google" {}

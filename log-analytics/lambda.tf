@@ -11,7 +11,8 @@ module "lambda_main" {
   }
 
   # https://github.com/aws-samples/amazon-cloudfront-access-logs-queries/blob/84d8c5be7ae87fb144ca6f1ca02d5b803e754a75/functions/moveAccessLogs.js
-  source_path = "./files/lambda/moveAccessLogs.js"
+  local_existing_package = data.archive_file.move_access_logs.output_path
+  create_package         = false
 
   attach_tracing_policy = true
   tracing_mode          = "Active"
