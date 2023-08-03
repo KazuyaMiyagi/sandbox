@@ -4,7 +4,7 @@ module "lambda_main" {
 
   function_name = "CloudFrontAccessLogsPartitioner"
   handler       = "moveAccessLogs.handler"
-  runtime       = "nodejs16.x"
+  runtime       = "nodejs18.x"
 
   environment_variables = {
     TARGET_KEY_PREFIX = "partitioned/"
