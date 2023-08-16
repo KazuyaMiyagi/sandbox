@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     region         = "ap-northeast-1"
     bucket         = "..."
-    key            = "log-analytics/terraform.tfstate"
+    key            = "log_analytics/terraform.tfstate"
     encrypt        = true
     dynamodb_table = "..."
   }

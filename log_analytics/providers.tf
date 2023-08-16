@@ -3,7 +3,7 @@ locals {
     ManagedBy   = "Terraform"
     Environment = "Sandbox"
     SourceRepo  = "KazuyaMiyagi/sandbox"
-    SourceDir   = "log-analytics"
+    SourceDir   = "log_analytics"
   }
 }
 
