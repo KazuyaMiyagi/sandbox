@@ -1,7 +1,7 @@
 # tfsec:ignore:aws-s3-enable-bucket-logging
 module "s3_bucket_cloudfront_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.14.1"
+  version = "3.15.0"
 
   bucket = "${data.aws_caller_identity.current.id}-cloudfront-logs"
 
@@ -43,7 +43,7 @@ module "s3_bucket_cloudfront_logs" {
 
 module "s3_bucket_notification_cloudfront_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws//modules/notification"
-  version = "3.14.1"
+  version = "3.15.0"
 
   bucket = module.s3_bucket_cloudfront_logs.s3_bucket_id
 
