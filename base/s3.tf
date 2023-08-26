@@ -1,6 +1,6 @@
 module "s3_bucket_tfstate" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.0"
+  version = "3.15.1"
 
   bucket = "${data.aws_caller_identity.current.id}-tfstate"
 
@@ -31,7 +31,7 @@ module "s3_bucket_tfstate" {
 # tfsec:ignore:aws-s3-enable-bucket-logging
 module "s3_bucket_tfstate_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.0"
+  version = "3.15.1"
 
   bucket = "${data.aws_caller_identity.current.id}-tfstate-logs"
 
@@ -57,7 +57,7 @@ module "s3_bucket_tfstate_logs" {
 # tfsec:ignore:aws-s3-enable-bucket-logging
 module "s3_bucket_athena_query_results" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.0"
+  version = "3.15.1"
 
   bucket = "aws-athena-query-results-${data.aws_caller_identity.current.id}-${data.aws_region.current.name}"
 
