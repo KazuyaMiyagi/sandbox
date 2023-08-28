@@ -37,4 +37,8 @@ module "aurora_mysql57" {
     "general",
     "slowquery",
   ]
+
+  # sandbox only settings
+  skip_final_snapshot = true
+  deletion_protection = false
 }
