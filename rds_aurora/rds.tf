@@ -38,6 +38,8 @@ module "aurora_mysql57" {
     "slowquery",
   ]
 
+  ca_cert_identifier = "rds-ca-ecc384-g1"
+
   # sandbox only settings
   skip_final_snapshot = true
   deletion_protection = false
