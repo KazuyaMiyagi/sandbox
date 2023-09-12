@@ -11,6 +11,11 @@ data "aws_iam_policy" "administrator_access" {
   arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project.html
+data "google_project" "current" {
+  project_id = var.gcp_project_id
+}
+
 # https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http
 data "http" "github_actions" {
   url = "https://token.actions.githubusercontent.com/.well-known/openid-configuration"

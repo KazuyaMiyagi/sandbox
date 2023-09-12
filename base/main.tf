@@ -7,6 +7,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.16.2"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "4.82.0"
+    }
     http = {
       source  = "hashicorp/http"
       version = "3.4.0"
