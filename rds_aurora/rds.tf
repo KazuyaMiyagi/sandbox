@@ -1,6 +1,6 @@
 module "aurora_mysql57" {
   source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "8.3.1"
+  version = "8.5.0"
 
   name           = "sandbox-mysql57"
   engine         = "aurora-mysql"
