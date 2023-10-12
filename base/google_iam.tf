@@ -1,6 +1,6 @@
 module "gcp_gh_oidc" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
-  version = "3.1.1"
+  version = "3.1.2"
 
   project_id  = data.google_project.current.project_id
   pool_id     = "sandbox-github-actions-pool"
