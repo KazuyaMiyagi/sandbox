@@ -6,6 +6,7 @@ module "gcp_gh_oidc" {
   pool_id     = "sandbox-github-actions-pool"
   provider_id = "sandbox-github-actions-provider"
   sa_mapping = {
+    # tflint-ignore: terraform_deprecated_interpolation
     "${google_service_account.main.account_id}" = {
       sa_name   = google_service_account.main.name
       attribute = "attribute.repository/${local.repo}"
