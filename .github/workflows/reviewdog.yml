@@ -1,0 +1,83 @@
+name: reviewdog
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      terraform_dir: ${{ steps.filter.outputs.changes }}
+    steps:
+      # 以下のコマンドでフィルターが生成できます
+      # for dir in $(ls . | grep -v -e 'README.md' -e 'renovate.json' -e 'tflint.hcl') ; do echo "            ${dir}: \"${dir}/**\"" ; done | sort
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            base: "base/**"
+            log_analytics: "log_analytics/**"
+            rds_aurora: "rds_aurora/**"
+            template: "template/**"
+
+  tflint:
+    name: TFLint
+    needs: changes
+    if: ${{ needs.changes.outputs.terraform_dir != '[]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        terraform_dir: ${{ fromJSON(needs.changes.outputs.terraform_dir) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-tflint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          working_directory: ${{ matrix.terraform_dir }}
+          filter_mode: added
+          reporter: github-pr-review
+          level: info
+          fail_on_error: true
+          tflint_init: true
+          tflint_config: ${{ github.workspace }}/tflint.hcl
+          tflint_rulesets: terraform aws google
+          flags: "" # default: "--module"
+
+  tfsec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-tfsec@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          filter_mode: added
+          reporter: github-pr-review
+          level: info
+          fail_on_error: true
+          tfsec_version: latest
+          tfsec_flags: "--ignore-hcl-errors"
+
+  detect-secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-detect-secrets@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          filter_mode: added
+          reporter: github-pr-review
+          level: info
+          fail_on_error: true
