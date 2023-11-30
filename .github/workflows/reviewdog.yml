@@ -81,3 +81,16 @@ jobs:
           reporter: github-pr-review
           level: info
           fail_on_error: true
+
+  trivy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-trivy@main
+        with:
+          github_token: ${{ secrets.github_token }}
+          filter_mode: added
+          reporter: github-pr-review
+          level: info
+          fail_on_error: true
