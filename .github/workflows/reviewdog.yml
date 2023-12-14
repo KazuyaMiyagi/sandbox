@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: reviewdog/action-detect-secrets@master
+      - uses: reviewdog/action-detect-secrets@v0
         with:
           github_token: ${{ secrets.github_token }}
           filter_mode: added
