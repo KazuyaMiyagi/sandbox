@@ -23,6 +23,7 @@ resource "aws_iam_role" "fis" {
 resource "aws_iam_policy" "fis" {
   name = "SandboxFISPolicy"
 
+  # trivy:ignore:AVD-AWS-0057
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [

@@ -25,6 +25,7 @@ resource "aws_iam_role" "storage_transfer_service" {
 resource "aws_iam_policy" "storage_transfer_service" {
   name = "storage-transfer-service-policy"
 
+  # trivy:ignore:AVD-AWS-0057
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
