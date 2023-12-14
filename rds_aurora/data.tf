@@ -1,3 +1,11 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity
+# account data
+data "aws_caller_identity" "current" {}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region
+# region data
+data "aws_region" "current" {}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc
 data "aws_vpc" "default" {
   default = true
