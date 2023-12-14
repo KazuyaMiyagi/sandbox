@@ -22,7 +22,6 @@ resource "aws_iam_role" "storage_transfer_service" {
   })
 }
 
-# tfsec:ignore:aws-iam-no-policy-wildcards
 resource "aws_iam_policy" "storage_transfer_service" {
   name = "storage-transfer-service-policy"
 

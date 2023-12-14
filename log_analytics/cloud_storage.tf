@@ -1,4 +1,3 @@
-# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
   version = "5.0.0"
