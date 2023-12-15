@@ -93,3 +93,5 @@ jobs:
           reporter: github-pr-review
           level: info
           fail_on_error: true
+          trivy_command: config
+          trivy_target: .
