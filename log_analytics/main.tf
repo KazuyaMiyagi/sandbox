@@ -1,7 +1,7 @@
 # https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version
 # terraform settings
 terraform {
-  required_version = "1.6.6"
+  required_version = "1.7.0"
   required_providers {
     archive = {
       source  = "hashicorp/archive"
