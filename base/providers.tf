@@ -23,4 +23,6 @@ provider "aws" {
   }
 }
 
-provider "google" {}
+provider "google" {
+  default_labels = local.default_tags
+}
