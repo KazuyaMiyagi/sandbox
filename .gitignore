@@ -5,6 +5,5 @@
 .terraform
 terraform.tfstate*
 backend_override.tf
-
-# lambda
-**/files/lambda/*.zip
+# archive_file
+**/dest/**

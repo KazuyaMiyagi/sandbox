@@ -21,5 +21,5 @@ data "google_storage_transfer_project_service_account" "default" {
 data "archive_file" "move_access_logs" {
   type        = "zip"
   source_file = "files/lambda/moveAccessLogs.js"
-  output_path = "files/lambda/moveAccessLogs.zip"
+  output_path = "dest/lambda/moveAccessLogs.zip"
 }
