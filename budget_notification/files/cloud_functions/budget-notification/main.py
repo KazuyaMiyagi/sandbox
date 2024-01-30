@@ -18,82 +18,91 @@ import logging
 import os
 import traceback
 import urllib.request
+from datetime import UTC, datetime, time
 
 import functions_framework
 from cloudevents.http import CloudEvent
 
 webhook_url = os.environ["SLACK_WEBHOOK_URL"]
 channel = os.environ["SLACK_CHANNEL"]
+# 通知時間帯 (UTC) 例: 15-16
+# 約1時間に一度メッセージがパブリッシュされる
+time_range = os.getenv("NOTIFY_TIME_RANGE", "15-16").split("-")
 logger = logging.getLogger()
 
 
 @functions_framework.cloud_event
 def subscribe(cloud_event: CloudEvent) -> None:
     try:
-        payload = json.loads(
-            base64.b64decode(cloud_event.data["message"]["data"]).decode()
-        )
-        data = {
-            "channel": channel,
-            "blocks": [
-                {
-                    "type": "header",
-                    "text": {
-                        "type": "plain_text",
-                        "text": payload.get("budgetDisplayName"),
+        utc_time = datetime.now(UTC).time()
+        start_time = time(int(time_range[0]), 0, 0)
+        end_time = time(int(time_range[1]), 0, 0)
+
+        if start_time <= utc_time <= end_time:
+            payload = json.loads(
+                base64.b64decode(cloud_event.data["message"]["data"]).decode()
+            )
+            data = {
+                "channel": channel,
+                "blocks": [
+                    {
+                        "type": "header",
+                        "text": {
+                            "type": "plain_text",
+                            "text": payload.get("budgetDisplayName"),
+                        },
                     },
-                },
-                {
-                    "type": "section",
-                    "fields": [
-                        {
-                            "type": "mrkdwn",
-                            "text": "*AlertThresholdExceeded:*\n{}".format(
-                                payload.get("alertThresholdExceeded")
-                            ),
-                        },
-                        {
-                            "type": "mrkdwn",
-                            "text": "*CostAmount:*\n{}".format(
-                                payload.get("costAmount")
-                            ),
-                        },
-                        {
-                            "type": "mrkdwn",
-                            "text": "*CostIntervalStart:*\n{}".format(
-                                payload.get("costIntervalStart")
-                            ),
-                        },
-                        {
-                            "type": "mrkdwn",
-                            "text": "*BudgetAmount:*\n{}".format(
-                                payload.get("budgetAmount")
-                            ),
-                        },
-                        {
-                            "type": "mrkdwn",
-                            "text": "*BudgetAmounType:*\n{}".format(
-                                payload.get("budgetAmounType")
-                            ),
-                        },
-                        {
-                            "type": "mrkdwn",
-                            "text": "*CurrencyCode:*\n{}".format(
-                                payload.get("currencyCode")
-                            ),
-                        },
-                    ],
-                },
-            ],
-        }
-        headers = {"Content-Type": "application/json"}
-        req = urllib.request.Request(
-            method="POST",
-            url=webhook_url,
-            data=json.dumps(data).encode(),
-            headers=headers,
-        )
-        urllib.request.urlopen(req)
+                    {
+                        "type": "section",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*AlertThresholdExceeded:*\n{}".format(
+                                    payload.get("alertThresholdExceeded")
+                                ),
+                            },
+                            {
+                                "type": "mrkdwn",
+                                "text": "*CostAmount:*\n{}".format(
+                                    payload.get("costAmount")
+                                ),
+                            },
+                            {
+                                "type": "mrkdwn",
+                                "text": "*CostIntervalStart:*\n{}".format(
+                                    payload.get("costIntervalStart")
+                                ),
+                            },
+                            {
+                                "type": "mrkdwn",
+                                "text": "*BudgetAmount:*\n{}".format(
+                                    payload.get("budgetAmount")
+                                ),
+                            },
+                            {
+                                "type": "mrkdwn",
+                                "text": "*BudgetAmounType:*\n{}".format(
+                                    payload.get("budgetAmounType")
+                                ),
+                            },
+                            {
+                                "type": "mrkdwn",
+                                "text": "*CurrencyCode:*\n{}".format(
+                                    payload.get("currencyCode")
+                                ),
+                            },
+                        ],
+                    },
+                ],
+            }
+            headers = {"Content-Type": "application/json"}
+            req = urllib.request.Request(
+                method="POST",
+                url=webhook_url,
+                data=json.dumps(data).encode(),
+                headers=headers,
+            )
+            urllib.request.urlopen(req)
 
     except Exception:
         logger.error({"cloud_event": cloud_event, "traceback": traceback.format_exc()})

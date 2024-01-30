@@ -33,7 +33,8 @@ resource "google_cloudfunctions2_function" "budget_notification" {
     max_instance_request_concurrency = 1
     available_cpu                    = "83m"
     environment_variables = {
-      SLACK_CHANNEL = var.slack_channel
+      SLACK_CHANNEL     = var.slack_channel
+      NOTIFY_TIME_RANGE = "15-16"
     }
     secret_environment_variables {
       key        = "SLACK_WEBHOOK_URL"
