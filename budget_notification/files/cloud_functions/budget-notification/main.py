@@ -18,16 +18,16 @@ import logging
 import os
 import traceback
 import urllib.request
-from datetime import UTC, datetime, time
+from datetime import UTC, datetime
 
 import functions_framework
 from cloudevents.http import CloudEvent
 
 webhook_url = os.environ["SLACK_WEBHOOK_URL"]
 channel = os.environ["SLACK_CHANNEL"]
-# 通知時間帯 (UTC) 例: 15-16
-# 約1時間に一度メッセージがパブリッシュされる
-time_range = os.getenv("NOTIFY_TIME_RANGE", "15-16").split("-")
+# 通知時間帯 (UTC), フォーマット: %H:%M:%S-%H:%M:%S, 例: 15:00:00-15:30:00
+# 約30分に一度メッセージがパブリッシュされる
+time_range = os.getenv("NOTIFY_TIME_RANGE", "15:00:00-15:30:00").split("-")
 logger = logging.getLogger()
 
 
@@ -35,8 +35,8 @@ logger = logging.getLogger()
 def subscribe(cloud_event: CloudEvent) -> None:
     try:
         utc_time = datetime.now(UTC).time()
-        start_time = time(int(time_range[0]), 0, 0)
-        end_time = time(int(time_range[1]), 0, 0)
+        start_time = datetime.strptime(time_range[0], "%H:%M:%S").time()
+        end_time = datetime.strptime(time_range[1], "%H:%M:%S").time()
 
         if start_time <= utc_time <= end_time:
             payload = json.loads(
