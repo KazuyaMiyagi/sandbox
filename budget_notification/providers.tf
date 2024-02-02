@@ -1,10 +1,11 @@
 locals {
   default_tags = {
-    managedby   = "terraform"
-    environment = "sandbox"
-    sourcerepo  = "kazuyamiyagi_sandbox"
-    sourcedir   = "template"
+    ManagedBy   = "Terraform"
+    Environment = "Sandbox"
+    SourceRepo  = "KazuyaMiyagi/sandbox"
+    SourceDir   = "budget_notification"
   }
+  default_labels = { for k, v in local.default_tags : lower(k) => lower(replace(v, "/", "_")) }
 }
 
 provider "archive" {}
@@ -18,5 +19,5 @@ provider "aws" {
 }
 
 provider "google" {
-  default_labels = local.default_tags
+  default_labels = local.default_labels
 }

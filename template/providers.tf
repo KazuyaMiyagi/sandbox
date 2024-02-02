@@ -5,6 +5,7 @@ locals {
     SourceRepo  = "KazuyaMiyagi/sandbox"
     SourceDir   = "template"
   }
+  default_labels = { for k, v in local.default_tags : lower(k) => lower(replace(v, "/", "_")) }
 }
 
 provider "aws" {
@@ -16,5 +17,5 @@ provider "aws" {
 }
 
 provider "google" {
-  default_labels = local.default_tags
+  default_labels = local.default_labels
 }
