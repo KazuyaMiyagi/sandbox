@@ -3,7 +3,7 @@ locals {
     ManagedBy   = "Terraform"
     Environment = "Sandbox"
     SourceRepo  = "KazuyaMiyagi/sandbox"
-    SourceDir   = "log_analytics"
+    SourceDir   = basename(path.cwd)
   }
   default_labels = { for k, v in local.default_tags : lower(k) => lower(replace(v, "/", "_")) }
 }

@@ -3,7 +3,7 @@ locals {
     ManagedBy   = "Terraform"
     Environment = "Sandbox"
     SourceRepo  = "KazuyaMiyagi/sandbox"
-    SourceDir   = "rds_aurora"
+    SourceDir   = basename(path.cwd)
   }
 }
 
