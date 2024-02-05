@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     region         = "ap-northeast-1"
     bucket         = "..."
-    key            = "rds_aurora/terraform.tfstate"
+    key            = "aurora_bigquery_datastream//terraform.tfstate"
     encrypt        = true
     dynamodb_table = "..."
   }

@@ -24,9 +24,10 @@ jobs:
         id: filter
         with:
           filters: |
+            aurora_bigquery_datastream: "aurora_bigquery_datastream/**"
             base: "base/**"
+            budget_notification: "budget_notification/**"
             log_analytics: "log_analytics/**"
-            rds_aurora: "rds_aurora/**"
             template: "template/**"
 
   tflint:
