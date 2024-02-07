@@ -1,5 +1,8 @@
 locals {
   repo = "KazuyaMiyagi/sandbox"
+
+  # 普段は消しておく
+  create_google_resources = false
 }
 
 variable "domain_name" {
