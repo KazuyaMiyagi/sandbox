@@ -6,6 +6,9 @@ module "bigquery_datastream" {
   location   = "asia-northeast1"
 
   dataset_id = "miyagi_sandbox_datastream"
+
+  # sandbox only settings
+  delete_contents_on_destroy = true
 }
 
 resource "google_bigquery_dataset_iam_policy" "datastream" {
