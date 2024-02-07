@@ -7,6 +7,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.35.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "5.15.0"
+    }
     random = {
       source  = "hashicorp/random"
       version = "3.6.0"

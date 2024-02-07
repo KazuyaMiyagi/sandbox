@@ -1,3 +1,13 @@
+locals {
+  google_cloud_datastream_asia_northeast1_cidrs = [
+    "34.146.175.7/32",
+    "34.146.177.122/32",
+    "35.194.107.163/32",
+    "35.189.147.253/32",
+    "34.84.33.5/32",
+  ]
+}
+
 resource "aws_security_group" "datastream_bastion" {
   name   = "datastream-bastion"
   vpc_id = data.aws_vpc.default.id
@@ -7,7 +17,10 @@ resource "aws_security_group" "datastream_bastion" {
     to_port     = random_integer.ephemeral_port.result
     protocol    = "tcp"
     description = "ssh"
-    cidr_blocks = [var.my_ip_cidr]
+    cidr_blocks = concat(
+      [var.my_ip_cidr],
+      local.google_cloud_datastream_asia_northeast1_cidrs
+    )
   }
 
   # trivy:ignore:AVD-AWS-0124

@@ -30,6 +30,11 @@ data "aws_iam_policy" "aws_fault_injection_simulator_rds_access" {
   arn = "arn:aws:iam::aws:policy/service-role/AWSFaultInjectionSimulatorRDSAccess"
 }
 
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project.html
+data "google_project" "current" {
+  project_id = var.gcp_project_id
+}
+
 data "aws_iam_policy" "amazon_ssm_managed_instance_core" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
@@ -41,4 +46,8 @@ data "aws_ssm_parameter" "amazonlinux_2" {
 data "aws_route53_zone" "main" {
   name         = var.domain_name
   private_zone = false
+}
+
+data "aws_secretsmanager_secret_version" "rds_master_user_password" {
+  secret_id = module.aurora_mysql57.cluster_master_user_secret[0].secret_arn
 }
