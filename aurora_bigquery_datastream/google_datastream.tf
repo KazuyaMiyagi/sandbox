@@ -16,7 +16,7 @@ resource "google_datastream_connection_profile" "source_aurora_mysql" {
     hostname    = aws_route53_record.datastream_bastion.fqdn
     username    = "datastream"
     port        = random_integer.ephemeral_port.result
-    private_key = base64decode(var.datastream_private_key)
+    private_key = tls_private_key.datastream.private_key_openssh
   }
 }
 

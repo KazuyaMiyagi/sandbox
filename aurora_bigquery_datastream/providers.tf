@@ -21,3 +21,5 @@ provider "random" {}
 provider "google" {
   default_labels = local.default_labels
 }
+
+provider "tls" {}

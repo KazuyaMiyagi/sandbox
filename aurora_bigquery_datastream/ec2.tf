@@ -26,7 +26,7 @@ resource "aws_instance" "datastream_bastion" {
   user_data = templatefile(
     "./templates/cloud_init/datastream_bastion.cfg.tftpl",
     {
-      datastream_ssh_authorized_key = var.datastream_public_key
+      datastream_ssh_authorized_key = tls_private_key.datastream.public_key_openssh
       ssh_port                      = random_integer.ephemeral_port.result
     }
   )
