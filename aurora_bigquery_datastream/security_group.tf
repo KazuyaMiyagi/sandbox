@@ -9,7 +9,9 @@ locals {
 }
 
 resource "aws_security_group" "datastream_bastion" {
-  name   = "datastream-bastion"
+  name        = "datastream-bastion"
+  description = "Datastream Bastion"
+
   vpc_id = data.aws_vpc.default.id
 
   ingress {
