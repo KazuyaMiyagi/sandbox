@@ -29,3 +29,16 @@ data "aws_subnet" "default" {
 data "aws_iam_policy" "aws_fault_injection_simulator_rds_access" {
   arn = "arn:aws:iam::aws:policy/service-role/AWSFaultInjectionSimulatorRDSAccess"
 }
+
+data "aws_iam_policy" "amazon_ssm_managed_instance_core" {
+  arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
+data "aws_ssm_parameter" "amazonlinux_2" {
+  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-minimal-hvm-arm64-ebs"
+}
+
+data "aws_route53_zone" "main" {
+  name         = var.domain_name
+  private_zone = false
+}

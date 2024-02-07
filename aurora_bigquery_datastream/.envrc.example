@@ -1,0 +1,4 @@
+source_up
+export TF_VAR_my_ip_cidr=".../32"
+export TF_VAR_datastream_public_key="$(cat tmp/datastream.key.pub)"
+export TF_VAR_datastream_private_key="$(base64 -i tmp/datastream.key)"

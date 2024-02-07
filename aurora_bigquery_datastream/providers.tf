@@ -14,3 +14,5 @@ provider "aws" {
     tags = local.default_tags
   }
 }
+
+provider "random" {}

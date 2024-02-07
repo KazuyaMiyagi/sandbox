@@ -4,7 +4,7 @@ module "aurora_mysql57" {
 
   name           = "sandbox-mysql57"
   engine         = "aurora-mysql"
-  engine_version = "5.7.mysql_aurora.2.11.3"
+  engine_version = "5.7.mysql_aurora.2.11.4"
   instance_class = "db.t3.small"
   instances = {
     1 = {}
@@ -22,6 +22,9 @@ module "aurora_mysql57" {
         for subnet in data.aws_subnet.default : subnet.cidr_block
       ]
     }
+    ex2_ingress = {
+      source_security_group_id = aws_security_group.datastream_bastion.id
+    }
   }
 
   master_username = "admin"
@@ -30,6 +33,20 @@ module "aurora_mysql57" {
   storage_encrypted   = true
   apply_immediately   = true
   monitoring_interval = 10
+
+  create_db_cluster_parameter_group = true
+  db_cluster_parameter_group_family = "aurora-mysql5.7"
+  db_cluster_parameter_group_parameters = [
+    {
+      name         = "binlog_format"
+      value        = "ROW"
+      apply_method = "pending-reboot"
+    },
+  ]
+
+  create_db_parameter_group     = true
+  db_parameter_group_family     = "aurora-mysql5.7"
+  db_parameter_group_parameters = []
 
   enabled_cloudwatch_logs_exports = [
     "audit",

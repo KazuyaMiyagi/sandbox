@@ -1,0 +1,41 @@
+#cloud-config
+repo_update: true
+repo_upgrade: all
+
+locale: ja_JP.utf8
+timezone: Asia/Tokyo
+
+users:
+  # default の ec2-user を作成しない
+  #- default
+  - name: datastream
+    sudo: false
+    ssh_authorized_keys:
+      - ${ datastream_ssh_authorized_key }
+
+packages:
+  # Amazon SSM エージェントのインストール
+  - amazon-ssm-agent
+
+# SSH のパスワード認証を無効化
+ssh_pwauth: no
+
+bootcmd:
+  # SSH のルートログインを無効化
+  - sed -i -e 's/^#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+  # SSH のポート変更
+  - sed -i -e 's/^#Port 22/Port ${ ssh_port }/' /etc/ssh/sshd_config
+
+runcmd:
+  # Amaozn SSM エージェントの有効化と起動
+  - systemctl enable amazon-ssm-agent && systemctl start amazon-ssm-agent
+  # fail2ban のインストールと有効化
+  - amazon-linux-extras install -y epel && yum install -y fail2ban && systemctl enable fail2ban && systemctl start fail2ban
+  # fail2ban と一緒にインストールされる firewalld の起動と SSH ポートの開放
+  - systemctl start firewalld.service && firewall-cmd --add-port=${ ssh_port }/tcp --permanent && firewall-cmd --reload
+
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true
