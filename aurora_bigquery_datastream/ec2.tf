@@ -31,6 +31,10 @@ resource "aws_instance" "datastream_bastion" {
     }
   )
 
+  metadata_options {
+    http_tokens = "required"
+  }
+
   tags = {
     Name = "bastion"
   }
