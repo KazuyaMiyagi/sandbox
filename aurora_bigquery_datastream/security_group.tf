@@ -1,4 +1,5 @@
 locals {
+  # https://cloud.google.com/datastream/docs/ip-allowlists-and-regions?hl=ja
   google_cloud_datastream_asia_northeast1_cidrs = [
     "34.146.175.7/32",
     "34.146.177.122/32",
@@ -18,7 +19,7 @@ resource "aws_security_group" "datastream_bastion" {
     from_port   = random_integer.ephemeral_port.result
     to_port     = random_integer.ephemeral_port.result
     protocol    = "tcp"
-    description = "ssh"
+    description = "Google Datastream connection over ssh"
     cidr_blocks = concat(
       [var.my_ip_cidr],
       local.google_cloud_datastream_asia_northeast1_cidrs
