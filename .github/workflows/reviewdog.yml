@@ -20,7 +20,7 @@ jobs:
     steps:
       # 以下のコマンドでフィルターが生成できます
       # for dir in $(ls . | grep -v -e 'README.md' -e 'renovate.json' -e 'tflint.hcl') ; do echo "            ${dir}: \"${dir}/**\"" ; done | sort
-      - uses: dorny/paths-filter@v2
+      - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
