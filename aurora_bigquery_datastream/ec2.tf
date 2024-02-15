@@ -12,7 +12,8 @@ resource "aws_iam_instance_profile" "datastream_bastion" {
 resource "aws_instance" "datastream_bastion" {
   ami                         = data.aws_ssm_parameter.amazonlinux_2.value
   instance_type               = "t4g.nano"
-  security_groups             = [aws_security_group.datastream_bastion.name]
+  subnet_id                   = data.aws_subnets.default.ids[0]
+  vpc_security_group_ids      = [aws_security_group.datastream_bastion.id]
   associate_public_ip_address = true
   monitoring                  = true
   iam_instance_profile        = aws_iam_instance_profile.datastream_bastion.name
