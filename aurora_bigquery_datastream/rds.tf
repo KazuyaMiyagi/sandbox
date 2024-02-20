@@ -42,6 +42,21 @@ module "aurora_mysql57" {
       value        = "ROW"
       apply_method = "pending-reboot"
     },
+    {
+      name         = "gtid-mode"
+      value        = "ON"
+      apply_method = "pending-reboot"
+    },
+    {
+      name         = "binlog_gtid_simple_recovery"
+      value        = "1"
+      apply_method = "pending-reboot"
+    },
+    {
+      name         = "enforce_gtid_consistency"
+      value        = "ON"
+      apply_method = "pending-reboot"
+    },
   ]
 
   create_db_parameter_group     = true
