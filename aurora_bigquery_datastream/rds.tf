@@ -25,6 +25,10 @@ module "aurora_mysql57" {
     ex2_ingress = {
       source_security_group_id = aws_security_group.datastream_bastion.id
     }
+    # sandbox only settings
+    ex3_ingress = {
+      cidr_blocks = [var.my_ip_cidr]
+    }
   }
 
   master_username = "admin"
@@ -75,4 +79,5 @@ module "aurora_mysql57" {
   # sandbox only settings
   skip_final_snapshot = true
   deletion_protection = false
+  publicly_accessible = true
 }
