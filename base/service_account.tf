@@ -4,9 +4,10 @@ module "gcp_gh_oidc" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   version = "3.1.2"
 
-  project_id  = data.google_project.current.project_id
-  pool_id     = "sandbox-github-actions-pool"
-  provider_id = "sandbox-github-actions-provider"
+  project_id          = data.google_project.current.project_id
+  pool_id             = "sandbox-github-actions-pool"
+  provider_id         = "sandbox-github-actions-provider"
+  attribute_condition = "assertion.repository_owner=='KazuyaMiyagi'"
   sa_mapping = {
     # tflint-ignore: terraform_deprecated_interpolation
     "${google_service_account.main[count.index].account_id}" = {
