@@ -1,6 +1,6 @@
 module "aws_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "2.2.1"
+  version = "3.0.0"
 
   enable_key_rotation = true
 
