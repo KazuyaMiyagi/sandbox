@@ -2,7 +2,7 @@ module "gcp_gh_oidc" {
   count = local.create_google_resources ? 1 : 0
 
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
-  version = "3.1.2"
+  version = "4.0.0"
 
   project_id          = data.google_project.current.project_id
   pool_id             = "sandbox-github-actions-pool"
