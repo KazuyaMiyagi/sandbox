@@ -1,6 +1,6 @@
 module "lambda_main" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "7.11.0"
+  version = "7.13.0"
 
   function_name = "CloudFrontAccessLogsPartitioner"
   handler       = "moveAccessLogs.handler"
