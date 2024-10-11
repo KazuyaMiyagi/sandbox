@@ -1,6 +1,6 @@
 module "kms_main" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "3.1.0"
+  version = "3.1.1"
 
   aliases = [
     "base",
