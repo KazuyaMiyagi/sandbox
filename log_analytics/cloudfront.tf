@@ -1,6 +1,6 @@
 module "cloudfront_main" {
   source  = "terraform-aws-modules/cloudfront/aws"
-  version = "3.4.1"
+  version = "4.0.0"
 
   aliases = ["cdn.${data.terraform_remote_state.base.outputs.aws_route53_zone_main.name}"]
 
