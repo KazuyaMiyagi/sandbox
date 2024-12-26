@@ -4,5 +4,10 @@
     "config:recommended"
   ],
   "automerge": true,
-  "ignoreTests": true
+  "ignoreTests": true,
+  "tflint-plugin": {
+    "fileMatch": [
+      "^tflint/tflint\\.hcl$"
+    ]
+  }
 }

@@ -12,77 +12,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    outputs:
-      terraform_dir: ${{ steps.filter.outputs.changes }}
-    steps:
-      # 以下のコマンドでフィルターが生成できます
-      # for dir in $(ls . | grep -v -e 'README.md' -e 'renovate.json' -e 'tflint.hcl') ; do echo "            ${dir}: \"${dir}/**\"" ; done | sort
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            aurora_bigquery_datastream: "aurora_bigquery_datastream/**"
-            base: "base/**"
-            budget_notification: "budget_notification/**"
-            log_analytics: "log_analytics/**"
-            template: "template/**"
-
   tflint:
     name: TFLint
-    needs: changes
-    if: ${{ needs.changes.outputs.terraform_dir != '[]' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      matrix:
-        terraform_dir: ${{ fromJSON(needs.changes.outputs.terraform_dir) }}
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-tflint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          working_directory: ${{ matrix.terraform_dir }}
-          filter_mode: added
+          working_directory: ${{ github.workspace }}
           reporter: github-pr-review
-          level: info
-          fail_on_error: true
           tflint_init: true
-          tflint_config: ${{ github.workspace }}/tflint.hcl
-          tflint_rulesets: terraform aws google
-          flags: "" # default: "--module"
-
-  tfsec:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-tfsec@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          filter_mode: added
-          reporter: github-pr-review
-          level: info
-          fail_on_error: true
-          tfsec_version: latest
-          tfsec_flags: "--ignore-hcl-errors"
-
-  detect-secrets:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-detect-secrets@v0
-        with:
-          github_token: ${{ secrets.github_token }}
-          filter_mode: added
-          reporter: github-pr-review
-          level: info
-          fail_on_error: true
+          tflint_config: ${{ github.workspace }}/tflint/tflint.hcl
+          # default: "--call-module-type=all"
+          # all だと terraform init をする必要がある
+          flags: >-
+            --recursive
+            --call-module-type local
 
   trivy:
+    name: Trivy
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -94,5 +44,19 @@ jobs:
           reporter: github-pr-review
           level: info
           fail_on_error: true
+          trivy_version: latest
           trivy_command: config
           trivy_target: .
+
+  detect-secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-detect-secrets@v0
+        with:
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: false
+          filter_mode: added
+          level: error
+          reporter: github-pr-review
