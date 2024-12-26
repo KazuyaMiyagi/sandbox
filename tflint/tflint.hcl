@@ -12,12 +12,6 @@ plugin "aws" {
   deep_check = false
 }
 
-rule "aws_s3_bucket_name" {
-  enabled = true
-  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-  regex = "^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"
-}
-
 plugin "google" {
   enabled = true
   version = "0.30.0"
