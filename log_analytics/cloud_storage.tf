@@ -1,6 +1,6 @@
 module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "9.0.1"
+  version = "9.0.2"
 
   project_id = data.google_project.current.project_id
   location   = "asia-northeast1"
