@@ -4,6 +4,5 @@ terraform {
     bucket         = "..."
     key            = "template/terraform.tfstate"
     encrypt        = true
-    dynamodb_table = "..."
   }
 }
