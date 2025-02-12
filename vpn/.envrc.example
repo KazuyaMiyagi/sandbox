@@ -1,0 +1,11 @@
+source_up
+
+# Tailscale
+export TAILSCALE_API_KEY=...
+
+# DigitalOcean
+# scope
+# - droplet: read, update, delete, create
+# - ssh_key: read
+export DIGITALOCEAN_ACCESS_TOKEN=...
+
