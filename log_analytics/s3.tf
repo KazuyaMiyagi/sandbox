@@ -1,6 +1,6 @@
 module "s3_bucket_cloudfront_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.5.0"
+  version = "4.6.0"
 
   bucket = "${data.aws_caller_identity.current.id}-cloudfront-logs"
 
@@ -42,7 +42,7 @@ module "s3_bucket_cloudfront_logs" {
 
 module "s3_bucket_notification_cloudfront_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws//modules/notification"
-  version = "4.5.0"
+  version = "4.6.0"
 
   bucket = module.s3_bucket_cloudfront_logs.s3_bucket_id
 
