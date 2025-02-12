@@ -1,0 +1,8 @@
+source_up
+
+# Tailscale
+export TAILSCALE_API_KEY=...
+
+# DigitalOcean
+export DIGITALOCEAN_ACCESS_TOKEN=...
+
