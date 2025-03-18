@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-tflint@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: reviewdog/action-tflint@41b4770c9d9e50741c20e431986b33124a07ca52 # v1.24.2
         with:
           github_token: ${{ secrets.github_token }}
           working_directory: ${{ github.workspace }}
@@ -36,8 +36,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-trivy@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: reviewdog/action-trivy@0cab87b781d62e7b01ca66d2900484dedba06306 # v1.13.10
         with:
           github_token: ${{ secrets.github_token }}
           filter_mode: added
@@ -52,8 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-detect-secrets@v0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: reviewdog/action-detect-secrets@bc63f9282b0cee5af6187043f8e79e80e7f6ffe3 # v0.28.3
         with:
           github_token: ${{ secrets.github_token }}
           fail_on_error: false
