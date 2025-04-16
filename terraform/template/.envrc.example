@@ -1,4 +1,8 @@
 source_up
 
+# AWS
+export TF_VAR_aws_account_id='...'
+
 # GCP
-export TF_VAR_gcp_project_id=...
+export TF_VAR_gcp_project_id='...'
+
