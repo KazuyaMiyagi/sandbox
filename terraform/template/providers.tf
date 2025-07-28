@@ -15,7 +15,6 @@ locals {
 provider "aws" {
   allowed_account_ids = [var.aws_account_id]
   region              = "ap-northeast-1"
-  alias               = "tokyo"
   default_tags {
     tags = local.default_tags
   }
