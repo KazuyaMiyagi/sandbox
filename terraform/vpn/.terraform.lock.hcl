@@ -5,22 +5,7 @@ provider "registry.terraform.io/digitalocean/digitalocean" {
   version     = "2.61.0"
   constraints = "2.61.0"
   hashes = [
-    "h1:5NpeYBLCAtRyYQILtTGC+T3sVvfz85Dhi6+0l+DAbzo=",
-    "h1:6Odj/ajOj81x5nS2zVer3sorR3SdgN4iBJ1gzGNTcCI=",
-    "h1:H5BuUh2PUBWw6IlEX8bdm9gRN2qO84kxWFpXwVir2SM=",
-    "h1:KEtyLzyEVQ+qia9b5WmhHZHtsGEFGaAiBBD0aUy/Ee4=",
-    "h1:S3h7CjdXn6imtTTVsg3ULYaZsK6UTv+IcMxBUdUncS0=",
-    "h1:V3qfdyPMpP4Lc9z9BGcxmGXrW5vZExaRjdnLZVtFy8k=",
-    "h1:Vu65YSEG8LN8IHwcrmIOTBYizSf4io/S+1ffQ6peqdU=",
-    "h1:YFPNMXdL3DdaXkpDehOX2fTBy+qHSgmiexTDkx36PTY=",
-    "h1:ZRBNbxwkQjknIX1YoL9CjyGg3+e8H+ZkUP72armRBSA=",
-    "h1:aNKtfp3zbL38XkKCKJyx0k+jll4sf00UKE/jZqrJdt8=",
-    "h1:baV9Qj6vQikA9gS7QJGVvx3sbis1SF9om4hRkmewF3M=",
     "h1:g10d/1RypoglkhGQwdRlQDfn9zD5nUOa73KEzun/Rvw=",
-    "h1:kpEJVuoMKo1EbhZltxZGBEV8LY1vZzQ0eDTGK48ucjA=",
-    "h1:nnClODVhKfnmib08MOzHqciG5hGj/WbQNrqJJaDVL5A=",
-    "h1:pX0jiiHGiHT3+k6PcrDodFpWFz9TUL3WK0coyDDoHQo=",
-    "h1:tDAYAdahlO93Ov5dtNTN8q82r8vIb12kVZWf3SE5LeE=",
     "zh:0da4143e9e0183b2b1fdb67f95d2f622b3efdf10f51e0ba40cd7248445298705",
     "zh:21f4a68a9a312dd95d820fa8392c4d283e7c2ce36485d7d53d31b44083ab964b",
     "zh:2669bd2b92ed2118249e7ddec86da32eee805cd4098756f2c291059962cbfa46",
@@ -44,20 +29,7 @@ provider "registry.terraform.io/tailscale/tailscale" {
   version     = "0.21.1"
   constraints = "0.21.1"
   hashes = [
-    "h1:1BYmN/NCeMDwAUDRyPJn60rPmFvsEuFEMDu0x2lIYBc=",
-    "h1:1lEPhcw//tXbX9joYZ0XOxIUF3qQk0sD+O3sgRDH57s=",
-    "h1:4VMx9K2LoOEirjbm9txqVnULoXv1wln6XDo5yr8R+FY=",
-    "h1:Bx30XKMTi3KbpUiO+aY0V1xv0gdOwwquVTkOgRaSBj0=",
-    "h1:G80FxvN55uGcuGq5MhnaJf0NVIGZy21oH+9tCJ0TCZw=",
-    "h1:GGqir1oPNCly4JZWYBYXSbFxbwgk7zXYMoQDw3sCT/s=",
-    "h1:SiNbDqjARQsYbnOYGKyr9MHPMNVImSphs1q+7qmRnXw=",
     "h1:WlL7BJHtxnvC4uR7NyTI95Ej5IDJxKqoSAu6pCwVVRs=",
-    "h1:Y+jeUvwRpk71EV3TjWTX/IOnmmzEDloFx//PSmrMQGc=",
-    "h1:bfIF0fyyCe8DuhxiEel6352ChCLRRFn7Dr1POR56X6c=",
-    "h1:g2qRee5bpyioNQ4w99XnZVtM+k1RRtMfm7uNV0JThtE=",
-    "h1:jtRN8X5NWpfQgnuxKvGOKdTDqWmDRtgOF85AFwKi690=",
-    "h1:toxgMmK/+hipwu8DK6EtZR8vMnqFk1oPeePNI6gp9xU=",
-    "h1:un5yTNeyVreIPNjWkBNLdpiFTh0I3ytfEJUlnHsQKTM=",
     "zh:0ececf1715d6ece1983e773f8b8def68e8d2d455ff1e5d49fffa97a62c629661",
     "zh:36146ceadff77791297dfdffe3fa39a6a93b8efc5f0cf55e64f8ad9143685bb5",
     "zh:4e5304e0443fa6f99ac4c280c0d780078c09475c705581199e3dbd1c0b66fc51",
