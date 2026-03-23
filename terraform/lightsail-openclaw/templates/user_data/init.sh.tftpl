@@ -1,0 +1,25 @@
+# ロケール・タイムゾーン設定
+localectl set-locale LANG=ja_JP.UTF-8
+timedatectl set-timezone Asia/Tokyo
+
+# パッケージ更新
+apt-get update -y
+apt-get upgrade -y
+
+# SSH 設定
+sed -i \
+  -e 's/^#PermitRootLogin prohibit-password/PermitRootLogin no/' \
+  -e 's/^#Port 22/Port ${ssh_port}/' \
+  -e 's/^PasswordAuthentication yes/PasswordAuthentication no/' \
+  /etc/ssh/sshd_config
+
+# fail2ban
+apt-get install -y fail2ban
+systemctl enable fail2ban
+systemctl start fail2ban
+
+# ファイアウォール
+ufw allow ${ssh_port}/tcp
+ufw --force enable
+
+reboot
