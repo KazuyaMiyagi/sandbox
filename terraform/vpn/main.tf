@@ -4,7 +4,7 @@ terraform {
   required_providers {
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.88.0"
+      version = "2.89.0"
     }
     tailscale = {
       source  = "tailscale/tailscale"
