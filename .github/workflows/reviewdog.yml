@@ -53,7 +53,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - uses: reviewdog/action-detect-secrets@53b50179462bbe04af2f25f088b97e55e1dec3a1 # v0.29.6
+      - uses: reviewdog/action-detect-secrets@ec0dde52d1644e27666856474a8cbc86032dcb8d # v0.29.7
         with:
           github_token: ${{ secrets.github_token }}
           fail_on_error: false
