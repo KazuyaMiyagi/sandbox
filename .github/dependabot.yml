@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+      time: "10:00"
+      timezone: Asia/Tokyo
+    assignees:
+      - KazuyaMiyagi
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: terraform
+    directories:
+      - /terraform/*
+    schedule:
+      interval: daily
+      time: "10:00"
+      timezone: Asia/Tokyo
+    groups:
+      terraform-providers:
+        patterns:
+          - "*"
+        group-by: dependency-name
+    assignees:
+      - KazuyaMiyagi
+    cooldown:
+      default-days: 7
