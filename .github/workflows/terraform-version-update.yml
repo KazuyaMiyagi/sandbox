@@ -1,0 +1,67 @@
+name: terraform version update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * 1-5"
+      timezone: "Asia/Tokyo"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configure git
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Update terraform version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          current_version=$(cat terraform/.terraform-version)
+          latest_tag=$(gh api repos/hashicorp/terraform/releases/latest --jq '.tag_name')
+          latest_version=${latest_tag#v}
+
+          if [ "${current_version}" = "${latest_version}" ]; then
+            echo "already up-to-date (${current_version})"
+            exit 0
+          fi
+
+          branch="deps/terraform-${latest_version}"
+          if git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
+            echo "branch ${branch} already exists, skipping"
+            exit 0
+          fi
+
+          echo "terraform: ${current_version} -> ${latest_version}"
+
+          git switch -c "${branch}"
+
+          echo "${latest_version}" > terraform/.terraform-version
+
+          while IFS= read -r f; do
+            sed -i "s|required_version = \"${current_version}\"|required_version = \"${latest_version}\"|" "${f}"
+          done < <(grep -lF "required_version = \"${current_version}\"" terraform/*/main.tf)
+
+          git add terraform/.terraform-version terraform/*/main.tf
+          git commit -m "chore(deps): update terraform to v${latest_version}"
+          git push origin "${branch}"
+
+          gh pr create \
+            --base main \
+            --head "${branch}" \
+            --assignee KazuyaMiyagi \
+            --title "chore(deps): update terraform to v${latest_version}" \
+            --body "Terraform を \`${current_version}\` から \`${latest_version}\` に更新します。
+
+          リリースノート: https://github.com/hashicorp/terraform/releases/tag/${latest_tag}"
