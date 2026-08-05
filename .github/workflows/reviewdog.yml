@@ -21,7 +21,6 @@ jobs:
       - uses: reviewdog/action-tflint@54a5e5aed57dcfbb4662ec548de876df33d6288d # v1.25.0
         with:
           github_token: ${{ secrets.github_token }}
-          working_directory: ${{ github.workspace }}
           reporter: github-pr-review
           tflint_init: true
           tflint_config: ${{ github.workspace }}/tflint/tflint.hcl
