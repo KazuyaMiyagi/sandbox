@@ -9,7 +9,14 @@ locals {
       basename(path.cwd),
     )
   }
-  default_labels = { for k, v in local.default_tags : lower(k) => lower(replace(v, "/", "_")) }
+
+  # GCP のラベルは大文字とスラッシュを許さないため、default_tags から派生させる。
+  # スラッシュはダッシュへ置き換える。ディレクトリ名は snake_case なので、
+  # アンダースコアにすると階層の区切りと名前の一部が見分けられなくなる。
+  lower_tags = {
+    for k, v in local.default_tags :
+    lower(replace(k, "/([a-z])([A-Z])/", "$${1}_$${2}")) => replace(lower(v), "/", "-")
+  }
 }
 
 provider "aws" {
@@ -22,5 +29,5 @@ provider "aws" {
 
 provider "google" {
   project        = var.gcp_project_id
-  default_labels = local.default_labels
+  default_labels = local.lower_tags
 }
