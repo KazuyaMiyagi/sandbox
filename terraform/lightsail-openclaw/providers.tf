@@ -11,8 +11,6 @@ locals {
   }
 }
 
-provider "external" {}
-
 provider "aws" {
   allowed_account_ids = [var.aws_account_id]
   region              = "ap-northeast-1"
@@ -20,6 +18,8 @@ provider "aws" {
     tags = local.default_tags
   }
 }
+
+provider "external" {}
 
 provider "http" {}
 
