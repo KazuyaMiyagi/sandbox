@@ -10,7 +10,8 @@ locals {
     )
   }
 
-  # GCP のラベルは大文字とスラッシュを許さないため、default_tags から派生させる。
+  # Google Cloud のラベルは大文字とスラッシュを許さないため、
+  # default_tags から派生させる。
   # スラッシュはダッシュへ置き換える。ディレクトリ名は snake_case なので、
   # アンダースコアにすると階層の区切りと名前の一部が見分けられなくなる。
   lower_tags = {
@@ -28,6 +29,6 @@ provider "aws" {
 }
 
 provider "google" {
-  project        = var.gcp_project_id
+  project        = var.google_project_id
   default_labels = local.lower_tags
 }

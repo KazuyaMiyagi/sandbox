@@ -3,7 +3,7 @@ variable "aws_account_id" {
   type        = string
 }
 
-variable "gcp_project_id" {
-  description = "GCP Project ID"
+variable "google_project_id" {
+  description = "Google Cloud Project ID"
   type        = string
 }

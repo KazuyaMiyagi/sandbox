@@ -8,5 +8,5 @@ data "aws_region" "current" {}
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project.html
 data "google_project" "current" {
-  project_id = var.gcp_project_id
+  project_id = var.google_project_id
 }
