@@ -4,5 +4,6 @@ variable "aws_account_id" {
 }
 
 locals {
-  prefix = basename(path.cwd)
+  # ディレクトリ名は snake_case だが、リソース名は kebab-case なので置き換える
+  prefix = replace(basename(path.cwd), "_", "-")
 }
