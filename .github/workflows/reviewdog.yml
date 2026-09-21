@@ -36,7 +36,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: reviewdog/action-trivy@aa68cc9532e944d1b1d91045a37405e46182dd2c # v1.15.1
+      - uses: reviewdog/action-trivy@765ed28176fa16dcac6ced7a652f51f6fd871174 # v1.16.0
         with:
           github_token: ${{ secrets.github_token }}
           filter_mode: added
