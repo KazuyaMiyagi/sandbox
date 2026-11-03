@@ -9,7 +9,7 @@ workflows:
         - 'google-github-actions/auth@v3.0.0'
     '.github/workflows/reviewdog.yml':
         - 'actions/checkout@v7.0.1'
-        - 'reviewdog/action-detect-secrets@v0.31.3'
+        - 'reviewdog/action-detect-secrets@v0.31.4'
         - 'reviewdog/action-tflint@v1.28.0'
         - 'reviewdog/action-trivy@v1.17.1'
     '.github/workflows/terraform-version-update.yml':
@@ -33,9 +33,9 @@ dependencies:
         commit: 'sha1-7c6bc770dae815cd3e89ee6cdf493a5fab2cc093'
         owner_id: 71461757
         repo_id: 407242578
-    'reviewdog/action-detect-secrets@v0.31.3':
-        ref: 'v0.31.3'
-        commit: 'sha1-d4720f862b52060d151f232944d0f6151eea9a9f'
+    'reviewdog/action-detect-secrets@v0.31.4':
+        ref: 'v0.31.4'
+        commit: 'sha1-897d73f2f5ede591f16b90f8a4119e562f72563d'
         owner_id: 48765237
         repo_id: 347786515
     'reviewdog/action-tflint@v1.28.0':
