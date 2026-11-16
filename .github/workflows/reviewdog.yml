@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: reviewdog/action-tflint@v1.28.0
+      - uses: reviewdog/action-tflint@v1.29.0
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
