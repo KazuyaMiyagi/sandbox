@@ -11,7 +11,7 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'reviewdog/action-detect-secrets@v0.31.4'
         - 'reviewdog/action-tflint@v1.28.0'
-        - 'reviewdog/action-trivy@v1.17.1'
+        - 'reviewdog/action-trivy@v1.18.0'
     '.github/workflows/terraform-version-update.yml':
         - 'actions/checkout@v7.0.1'
     '.github/workflows/test.yaml': []
@@ -43,8 +43,8 @@ dependencies:
         commit: 'sha1-c332ae72f14fd853c08323a60383b396cc34715a'
         owner_id: 48765237
         repo_id: 211132408
-    'reviewdog/action-trivy@v1.17.1':
-        ref: 'v1.17.1'
-        commit: 'sha1-1d4e9cf7cd9d2a130f84f9c4d171dcdea3af5348'
+    'reviewdog/action-trivy@v1.18.0':
+        ref: 'v1.18.0'
+        commit: 'sha1-c51bf26459dab6a2b5c34e7f43eeb475746f1a00'
         owner_id: 48765237
         repo_id: 721697660
